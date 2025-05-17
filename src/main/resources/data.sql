@@ -1,0 +1,4 @@
+INSERT INTO TB_USER (name, email, password, role, creation_date, last_login) VALUES
+                                                                                 ( 'Alice Ferreira', 'alice@example.com', '$2a$10$aEOjQ7/2GXtB0jtC4VAJd.s/R5ObnR/cLNA1dtTCUJ0nBNtWTBjFm', 'USER', '2024-12-01T00:00:00', '2025-05-01T00:00:00'),
+                                                                                 ( 'Bruno Lima', 'bruno@example.com', '$2a$10$aEOjQ7/2GXtB0jtC4VAJd.s/R5ObnR/cLNA1dtTCUJ0nBNtWTBjFm', 'USER', '2024-12-15T00:00:00', '2025-04-30T00:00:00'),
+                                                                                 ( 'Carla Mendes', 'carla@example.com', '$2a$10$aEOjQ7/2GXtB0jtC4VAJd.s/R5ObnR/cLNA1dtTCUJ0nBNtWTBjFm', 'ADMIN', '2025-01-10T00:00:00', '2025-05-02T00:00:00');
