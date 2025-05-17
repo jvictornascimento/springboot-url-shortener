@@ -44,6 +44,7 @@ public class SecurityConfig {
                         auth -> auth
                                 .requestMatchers(
                                         "/login",
+                                        "/{short_code}",
                                         "/v3/api-docs/**",
                                         "/swagger-ui.html",
                                         "/swagger-ui/**"
