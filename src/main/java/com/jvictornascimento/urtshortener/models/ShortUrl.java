@@ -39,7 +39,7 @@ public class ShortUrl {
     public ShortUrl() {
     }
 
-    public ShortUrl(Long id, String hash, String originalUrl, Long clickCount, LocalDateTime creationDate, LocalDateTime expirationDate, Users user, List<AccessLog> accessLogs) {
+    public ShortUrl(Long id, String hash, String originalUrl, Long clickCount, LocalDateTime creationDate, LocalDateTime expirationDate, Users user) {
         this.id = id;
         this.hash = hash;
         this.originalUrl = originalUrl;
@@ -47,7 +47,6 @@ public class ShortUrl {
         this.creationDate = creationDate;
         this.expirationDate = expirationDate;
         this.user = user;
-        this.accessLogs = accessLogs;
     }
 
     public Long getId() {
