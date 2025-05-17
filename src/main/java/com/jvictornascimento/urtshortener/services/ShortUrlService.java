@@ -13,6 +13,7 @@ import com.jvictornascimento.urtshortener.repositories.UsersRepository;
 import com.jvictornascimento.urtshortener.services.exceptions.ExpiredLinkException;
 import com.jvictornascimento.urtshortener.services.exceptions.HashNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -30,7 +31,7 @@ public class ShortUrlService {
         this.shortUrlRepository = shortUrlRepository;
         this.accessLogRepository = accessLogRepository;
     }
-    public ResponseShortUrlDTO Shoten(ShortUrlDTO originUrlDTO, Users user){
+    public ResponseShortUrlDTO Shoten(ShortUrlDTO originUrlDTO, String user){
         var shortUrl = new ShortUrl(
                 null,
                 GeneratorShortHash(originUrlDTO.url()),
@@ -38,15 +39,15 @@ public class ShortUrlService {
                 0L,
                 LocalDateTime.now(),
                 LocalDateTime.now().plusMinutes(3),
-                user
+                findbyEmail(user)
         );
         shortUrlRepository.save(shortUrl);
         return new ResponseShortUrlDTO("http://short.local/" + shortUrl.getHash(), shortUrl.getOriginalUrl());
 
     }
 
-    public List<ResponseGetShortUrlByUserDTO> getListByUser(Long id){
-        var user = usersRepository.findById(id).orElseThrow(()-> new RuntimeException("User not found!"));
+    public List<ResponseGetShortUrlByUserDTO> getListByUser(String email){
+        var user = findbyEmail(email);
         var list = user.getListURL();
         return list.stream().map(
                 u -> new ResponseGetShortUrlByUserDTO(
@@ -90,5 +91,8 @@ public class ShortUrlService {
         accessLogRepository.save(log);
 
         return shortUrl.getOriginalUrl();
+    }
+    private Users findbyEmail(String email){
+        return usersRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 }
