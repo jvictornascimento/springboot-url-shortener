@@ -13,12 +13,13 @@ import com.jvictornascimento.urtshortener.repositories.UsersRepository;
 import com.jvictornascimento.urtshortener.services.exceptions.ExpiredLinkException;
 import com.jvictornascimento.urtshortener.services.exceptions.HashNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.jvictornascimento.urtshortener.services.utilities.HashGenerator.GeneratorShortHash;
-
+@Service
 public class ShortUrlService {
     private final UsersRepository usersRepository;
     private final ShortUrlRepository shortUrlRepository;
