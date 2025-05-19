@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.jvictornascimento</groupId>
-    <artifactId>urt-shortener</artifactId>
+    <artifactId>url-shortener</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Backend</name>
-    <description>Backend</description>
+    <name>Url-shortener</name>
+    <description>Api url shortener</description>
     <url/>
     <licenses>
         <license/>

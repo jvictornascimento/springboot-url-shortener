@@ -71,7 +71,6 @@ public class ShortUrlService {
         }
     }
     public String getOriginalUrl(String shortCode, HttpServletRequest request){
-        System.out.println(shortCode);
         var optionalShortUrl = shortUrlRepository.findByHash(shortCode);
         if(optionalShortUrl.isEmpty()){
             throw new HashNotFoundException(shortCode);
@@ -79,7 +78,6 @@ public class ShortUrlService {
 
         ShortUrl shortUrl = optionalShortUrl.get();
         if (shortUrl.getExpirationDate() != null && shortUrl.getExpirationDate().isBefore(LocalDateTime.now())){
-            System.out.println("chegou aqui");
             throw new ExpiredLinkException();
         }
 
