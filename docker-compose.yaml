@@ -1,0 +1,33 @@
+services:
+  traefik:
+    image: traefik:v3
+    restart: always
+    container_name: traefik
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./service.yaml:/service.yaml
+    command:
+      - --api.insecure=true
+      - --providers.docker=true
+      - --providers.file.filename=/service.yaml
+      - --providers.file.watch=true
+      - --log.level=DEBUG
+      - --entrypoints.http.address=:80
+    ports:
+      - "80:80"
+      - "8080:8080"
+    networks:
+      - traefik
+
+  url-shortener:
+    build: .
+    container_name: url_shortener
+    depends_on:
+      - traefik
+    networks:
+      - traefik
+
+networks:
+  traefik:
+    name: traefik
+    external: true

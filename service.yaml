@@ -1,0 +1,13 @@
+http:
+  routers:
+    url-shortener-router:
+      rule: "Host(`short.local`)"
+      entryPoints:
+        - http
+      service: url-shortener
+
+  services:
+    url-shortener:
+      loadBalancer:
+        servers:
+          - url: "http://url_shortener:8001"
