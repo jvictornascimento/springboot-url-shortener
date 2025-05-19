@@ -31,12 +31,12 @@ public class ShortUrlService {
         this.shortUrlRepository = shortUrlRepository;
         this.accessLogRepository = accessLogRepository;
     }
-    public ResponseShortUrlDTO Shoten(ShortUrlDTO originUrlDTO, String user){
+    public ResponseShortUrlDTO Shoten(ShortUrlDTO originUrlDTO, String user) {
+        var urlOriginal = serializeToUrl(originUrlDTO.url());
         var shortUrl = new ShortUrl(
                 null,
-                GeneratorShortHash(originUrlDTO.url()),
-                originUrlDTO.url(),
-                0L,
+                GeneratorShortHash(urlOriginal),
+                urlOriginal,
                 LocalDateTime.now(),
                 LocalDateTime.now().plusMinutes(3),
                 findbyEmail(user)
@@ -44,6 +44,13 @@ public class ShortUrlService {
         shortUrlRepository.save(shortUrl);
         return new ResponseShortUrlDTO("http://short.local/" + shortUrl.getHash(), shortUrl.getOriginalUrl());
 
+    }
+
+    private String serializeToUrl(String url) {
+        if(!url.startsWith("http:") || !url.startsWith("http")) {
+            return "http://" + url;
+        }
+        return url;
     }
 
     public List<ResponseGetShortUrlByUserDTO> getListByUser(String email){

@@ -22,7 +22,6 @@ public class ShortUrl {
     @Column(nullable = false)
     private String originalUrl;
 
-    private Long clickCount;
 
     private LocalDateTime creationDate;
 
@@ -39,11 +38,10 @@ public class ShortUrl {
     public ShortUrl() {
     }
 
-    public ShortUrl(Long id, String hash, String originalUrl, Long clickCount, LocalDateTime creationDate, LocalDateTime expirationDate, Users user) {
+    public ShortUrl(Long id, String hash, String originalUrl, LocalDateTime creationDate, LocalDateTime expirationDate, Users user) {
         this.id = id;
         this.hash = hash;
         this.originalUrl = originalUrl;
-        this.clickCount = clickCount;
         this.creationDate = creationDate;
         this.expirationDate = expirationDate;
         this.user = user;
@@ -71,14 +69,6 @@ public class ShortUrl {
 
     public void setOriginalUrl(String originalUrl) {
         this.originalUrl = originalUrl;
-    }
-
-    public Long getClickCount() {
-        return clickCount;
-    }
-
-    public void setClickCount(Long clickCount) {
-        this.clickCount = clickCount;
     }
 
     public LocalDateTime getCreationDate() {
@@ -131,7 +121,6 @@ public class ShortUrl {
                 "id=" + id +
                 ", hash='" + hash + '\'' +
                 ", originalUrl='" + originalUrl + '\'' +
-                ", clickCount=" + clickCount +
                 ", creationDate=" + creationDate +
                 ", expirationDate=" + expirationDate +
                 ", user=" + user +
