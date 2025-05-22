@@ -38,6 +38,14 @@ Este projeto é uma API de encurtamento de URLs desenvolvida com Java e Spring B
 - Java 21
 - Maven (caso queira rodar fora do Docker)
 
+### Subindo o projeto com Docker Compose
+
+```bash
+    git clone https://github.com/jvictornascimento/springboot-url-shortener.git
+    cd springboot-url-shortener
+    docker-compose up --build
+````
+
 ### Configuração do Dominio `short.local`
 
 Para melhor experiência de testes locais, você pode configurar o domínio `short.local` no seu arquivo `hosts`.
